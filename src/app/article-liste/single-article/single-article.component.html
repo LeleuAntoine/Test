@@ -6,15 +6,18 @@
     {{article.photo}}
   </div>
   <div class="col-xs-12">
-    Description : {{article.description}}
-    Catégorie : {{article.categorie}}
-    Mise à Prix : {{article.prixDeDepart}}
-    Fin de l'enchère : {{article.finEnchere}}
-    Retrait : {{article.retrait}}
+    <p>Description : {{article.description}}</p>
+    <p>Catégorie : {{article.categorie}}</p>
+    <p>Mise à Prix : {{article.prixDeDepart}}</p>
+    <p>Fin de l'enchère : {{article.finEnchere}}</p>
+    <p>Retrait : {{article.retrait}}</p>
   </div>
-  <div class="col-xs-12">
-    Ma Proposition :
-    <button>Enchérir</button>
-  </div>
+<!--  <form [formGroup]="enchereForm" (ngSubmit)="">-->
+<!--  <div class="col-xs-12">-->
+<!--    <label for="maProposition">Ma Proposition :</label>-->
+<!--    <input type="number" class="form-control" id="maProposition" formControlName="maProposition">-->
+<!--    <button type="submit" class="btn btn-success" [disabled]="enchereForm.invalid">Enchérir</button>-->
+<!--  </div>-->
+<!--  </form>-->
   <button class="btn btn-default" (click)="onBack()">Retour</button>
 </div>

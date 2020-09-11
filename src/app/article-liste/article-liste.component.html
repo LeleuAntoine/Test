@@ -8,7 +8,11 @@
         <h3 class="list-group-item-heading">
           {{article.title}}
         </h3>
-        <p>{{article.prixDeDepart}},{{article.finEnchere}},{{article.retrait}},{{article.photo}}</p>
+        <p>{{article.photo}}</p>
+        <p>Prix : {{article.prixDeDepart}}</p>
+        <p>Fin de l'enchère : {{article.finEnchere}}</p>
+        <p>Retrait : {{article.retrait}}</p>
+
       </button>
     </div>
     <button class="btn btn-primary" (click)="onNewArticle()">Nouvelle Article</button>

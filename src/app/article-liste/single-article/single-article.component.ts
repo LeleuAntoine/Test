@@ -18,7 +18,7 @@ export class SingleArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.article = new Article('', '', '', '', '', '', '');
+    // this.article = new Article();
     const id = this.route.snapshot.params['id'];
     this.articleService.getSingleArticle(+id).then(
       (article: Article) => {
