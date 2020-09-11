@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{article.title}}</h1>
+  </div>
+  <div class="col-xs-12">
+    {{article.photo}}
+  </div>
+  <div class="col-xs-12">
+    Description : {{article.description}}
+    Catégorie : {{article.categorie}}
+    Mise à Prix : {{article.prixDeDepart}}
+    Fin de l'enchère : {{article.finEnchere}}
+    Retrait : {{article.retrait}}
+  </div>
+  <div class="col-xs-12">
+    Ma Proposition :
+    <button>Enchérir</button>
+  </div>
+  <button class="btn btn-default" (click)="onBack()">Retour</button>
+</div>

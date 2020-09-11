@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Enregistrer un nouvel article</h2>
+    <form [formGroup]="articleForm" (ngSubmit)="onSaveArticle()">
+      <label for="title">Article : </label>
+      <input type="text" class="form-control" id="title" formControlName="title">
+      <label for="categorie">Categorie : </label>
+      <input type="text" class="form-control" id="categorie" formControlName="categorie">
+      <label for="description">Descritpion : </label>
+      <input type="text" class="form-control" id="description" formControlName="description">
+      <form>
+        <button class="btn btn-success">Télécharger</button>
+      </form>
+      <label for="miseAPrix">Prix initial : </label>
+      <input type="number" class="form-control" id="miseAPrix" formControlName="miseAPrix">
+      <label for="debutEnchere">Début de l'enchère : </label>
+      <input type="datetime-local" class="form-control" id="debutEnchere" formControlName="debutEnchere">
+      <label for="finEnchere">Fin de l'enchère : </label>
+      <input type="datetime-local" class="form-control" id="finEnchere" formControlName="finEnchere">
+      <label for="retrait">Retrait</label>
+      <input type="text" class="form-control" id="retrait" formControlName="retrait">
+      <button type="submit" class="btn btn-success" [disabled]="articleForm.invalid">Enregistrer</button>
+      <button type="reset">Annuler</button>
+    </form>
+  </div>
+</div>

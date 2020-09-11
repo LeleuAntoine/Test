@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Articles</h2>
+    <div class="list-group">
+      <button class="list-group-item"
+              *ngFor="let article of articles; let i =index"
+              (click)="onViewArticle(i)">
+        <h3 class="list-group-item-heading">
+          {{article.title}}
+        </h3>
+        <p>{{article.prixDeDepart}},{{article.finEnchere}},{{article.retrait}},{{article.photo}}</p>
+      </button>
+    </div>
+    <button class="btn btn-primary" (click)="onNewArticle()">Nouvelle Article</button>
+  </div>
+</div>
