@@ -8,9 +8,12 @@
       <input type="text" class="form-control" id="categorie" formControlName="categorie">
       <label for="description">Descritpion : </label>
       <input type="text" class="form-control" id="description" formControlName="description">
-      <form>
-        <button class="btn btn-success">Télécharger</button>
-      </form>
+      <div class="form-group">
+        <h4>Ajouter une photo</h4>
+        <input type="file" (change)="detectFiles($event)" class="form-control" accept="image/*">
+        <p class="text-success" *ngIf="fileUploaded">Fichier Chargé</p>
+        <!--          <p class="text-danger" *ngIf="">Problème de chargement</p>-->
+      </div>
       <label for="miseAPrix">Prix initial : </label>
       <input type="number" class="form-control" id="miseAPrix" formControlName="miseAPrix">
       <label for="debutEnchere">Début de l'enchère : </label>
@@ -19,7 +22,8 @@
       <input type="datetime-local" class="form-control" id="finEnchere" formControlName="finEnchere">
       <label for="retrait">Retrait</label>
       <input type="text" class="form-control" id="retrait" formControlName="retrait">
-      <button type="submit" class="btn btn-success" [disabled]="articleForm.invalid">Enregistrer</button>
+      <button type="submit" class="btn btn-success" [disabled]="articleForm.invalid || fileIsUploading">Enregistrer
+      </button>
       <button type="reset">Annuler</button>
     </form>
   </div>

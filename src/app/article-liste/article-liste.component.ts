@@ -23,6 +23,7 @@ export class ArticleListeComponent implements OnInit , OnDestroy{
         this.articles = articles;
       }
     );
+    this.articlesService.getArticle();
     this.articlesService.emitArticle();
   }
 

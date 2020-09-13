@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Article} from '../model/Article.model';
 import {Subject} from 'rxjs';
 import * as firebase from 'firebase';
-import {rejects} from 'assert';
+
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +51,19 @@ export class ArticlesService {
   }
 
   removeArticle(article: Article) {
+    if (article.photo) {
+      const storageRef = firebase.storage().refFromURL(article.photo);
+      storageRef.delete().then(
+        () => {
+          console.log('Photo supprimé');
+        }
+      ).catch(
+        (error) => {
+          console.log('Fichier non trouvé : ' + error);
+        }
+      );
+
+    }
     const articleIndexToRemove = this.article.findIndex(
       (articleEL) => {
         if (articleEL === article) {
@@ -63,4 +76,27 @@ export class ArticlesService {
     this.emitArticle();
   }
 
+  uploadFile(file: File) {
+    return new Promise
+    (
+      (resolve, reject) => {
+        const almostUniqueFileName = Date.now().toString();
+        const uplaod = firebase.storage().ref().child('/images' + almostUniqueFileName + file.name)
+          .put(file);
+        uplaod.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {
+            console.log('Chargement...');
+          },
+          (error) => {
+            console.log('Erreur de charment : ' + error);
+            reject();
+          },
+          () => {
+            console.log('Chargé');
+            resolve(uplaod.snapshot.ref.getDownloadURL());
+          }
+        );
+      }
+    );
+  }
 }

@@ -2,8 +2,8 @@
   <div class="col-xs-12">
     <h1>{{article.title}}</h1>
   </div>
-  <div class="col-xs-12">
-    {{article.photo}}
+  <div class="col-xs-10 col-xs-offset-2">
+    <img style="max-width: 100%" *ngIf="article.photo" [src]="article.photo">
   </div>
   <div class="col-xs-12">
     <p>Description : {{article.description}}</p>
@@ -12,12 +12,12 @@
     <p>Fin de l'enchère : {{article.finEnchere}}</p>
     <p>Retrait : {{article.retrait}}</p>
   </div>
-<!--  <form [formGroup]="enchereForm" (ngSubmit)="">-->
-<!--  <div class="col-xs-12">-->
-<!--    <label for="maProposition">Ma Proposition :</label>-->
-<!--    <input type="number" class="form-control" id="maProposition" formControlName="maProposition">-->
-<!--    <button type="submit" class="btn btn-success" [disabled]="enchereForm.invalid">Enchérir</button>-->
-<!--  </div>-->
-<!--  </form>-->
+  <!--  <form [formGroup]="enchereForm" (ngSubmit)="">-->
+  <!--  <div class="col-xs-12">-->
+  <!--    <label for="maProposition">Ma Proposition :</label>-->
+  <!--    <input type="number" class="form-control" id="maProposition" formControlName="maProposition">-->
+  <!--    <button type="submit" class="btn btn-success" [disabled]="enchereForm.invalid">Enchérir</button>-->
+  <!--  </div>-->
+  <!--  </form>-->
   <button class="btn btn-default" (click)="onBack()">Retour</button>
 </div>
