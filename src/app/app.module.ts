@@ -14,11 +14,15 @@ import {ArticlesService} from './services/articles.service';
 import {AuthGuardService} from './services/auth-guard.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
+import { UserFormComponent } from './user/user-form/user-form.component';
+import { UserPageComponent } from './user/user-page/user-page.component';
+import {UserService} from './services/user.service';
 
 const appRoutes: Routes = [
   {path: 'auth/signup', component: SignupComponent},
   {path: 'auth/signin', component: SigninComponent},
-  {path: 'articles', canActivate: [AuthGuardService], component: ArticleListeComponent},
+  {path: 'user/update', canActivate: [AuthGuardService], component: UserFormComponent},
+  {path: 'articles', component: ArticleListeComponent},
   {path: 'articles/new', canActivate: [AuthGuardService], component: ArticleFormComponent},
   {path: 'articles/view/:id', canActivate: [AuthGuardService], component: SingleArticleComponent},
   {path: '', redirectTo: 'articles', pathMatch: 'full'},
@@ -34,7 +38,9 @@ const appRoutes: Routes = [
     SigninComponent,
     ArticleListeComponent,
     SingleArticleComponent,
-    ArticleFormComponent
+    ArticleFormComponent,
+    UserFormComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,8 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     ArticlesService,
-    AuthGuardService
+    AuthGuardService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

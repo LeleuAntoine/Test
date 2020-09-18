@@ -3,7 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ArticlesService} from '../../services/articles.service';
 import {Router} from '@angular/router';
 import {Article} from '../../model/Article.model';
-import {CommonModule} from '@angular/common';
+import * as firebase from 'firebase';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-article-form',
@@ -19,6 +20,7 @@ export class ArticleFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private articleService: ArticlesService,
+              private userService: UserService,
               private router: Router) {
   }
 
@@ -47,7 +49,9 @@ export class ArticleFormComponent implements OnInit {
     const debutEnchere = this.articleForm.get('debutEnchere').value;
     const finEnchere = this.articleForm.get('finEnchere').value;
     const retrait = this.articleForm.get('retrait').value;
-    const newArticle = new Article(title, description, categorie, miseAPrix, debutEnchere, finEnchere, retrait);
+    const userId = firebase.auth().currentUser.uid;
+    const pseudoUser = this.userService.getUser(userId).pseudo;
+    const newArticle = new Article(title, description, categorie, miseAPrix, debutEnchere, finEnchere, retrait, pseudoUser, userId);
     if (this.fileUrl && this.fileUrl !== '') {
       newArticle.photo = this.fileUrl;
     }

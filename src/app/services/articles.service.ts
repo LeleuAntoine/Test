@@ -9,25 +9,28 @@ import * as firebase from 'firebase';
 })
 export class ArticlesService {
 
-  article: Article[] = [];
+  article: Article;
+  articles: Article[] = [];
   articleSubject = new Subject<Article[]>();
 
   constructor() {
   }
 
   emitArticle() {
-    this.articleSubject.next(this.article);
+    this.articleSubject.next(this.articles);
   }
 
   saveArticle() {
-    firebase.database().ref('/articles').set(this.article);
+    firebase.database().ref('/articles').set(this.articles);
   }
 
   getArticle() {
     firebase.database().ref('/articles').on('value', (data) => {
-      this.article = data.val() ? data.val() : [];
+      this.articles = data.val() ? data.val() : [];
       this.emitArticle();
     });
+    this.article = this.articles[0];
+    console.log(this.article.title);
   }
 
   getSingleArticle(id: number) {
@@ -45,7 +48,7 @@ export class ArticlesService {
   }
 
   createNewArticle(newArticle: Article) {
-    this.article.push(newArticle);
+    this.articles.push(newArticle);
     this.saveArticle();
     this.emitArticle();
   }
@@ -64,14 +67,14 @@ export class ArticlesService {
       );
 
     }
-    const articleIndexToRemove = this.article.findIndex(
+    const articleIndexToRemove = this.articles.findIndex(
       (articleEL) => {
         if (articleEL === article) {
           return true;
         }
       }
     );
-    this.article.splice(articleIndexToRemove, 1);
+    this.articles.splice(articleIndexToRemove, 1);
     this.saveArticle();
     this.emitArticle();
   }

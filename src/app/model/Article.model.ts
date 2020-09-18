@@ -3,6 +3,7 @@ export class Article {
 
   constructor(public title: string, public categorie: string,
               public description: string, public prixDeDepart: number,
-              public debutEnchere: Date, public finEnchere: Date, public retrait: string) {
+              public debutEnchere: Date, public finEnchere: Date, public retrait: string,
+              public pseudoUser: string, public userId: string) {
   }
 }
