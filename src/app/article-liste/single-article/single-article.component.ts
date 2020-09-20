@@ -10,6 +10,7 @@ import {ArticlesService} from '../../services/articles.service';
 })
 export class SingleArticleComponent implements OnInit {
 
+  date: Date;
   article: Article;
 
   constructor(private route: ActivatedRoute,
@@ -18,7 +19,7 @@ export class SingleArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.article = new Article();
+    this.article = new Article('', '', '', 0, this.date, this.date, '', '', '');
     const id = this.route.snapshot.params['id'];
     this.articleService.getSingleArticle(+id).then(
       (article: Article) => {
@@ -27,7 +28,7 @@ export class SingleArticleComponent implements OnInit {
     );
   }
 
-  onBack(){
+  onBack() {
     this.router.navigate(['/articles']);
   }
 

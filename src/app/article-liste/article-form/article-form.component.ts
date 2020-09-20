@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {Article} from '../../model/Article.model';
 import * as firebase from 'firebase';
 import {UserService} from '../../services/user.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-article-form',
@@ -13,6 +14,7 @@ import {UserService} from '../../services/user.service';
 })
 export class ArticleFormComponent implements OnInit {
 
+  providers: [DatePipe];
   articleForm: FormGroup;
   fileIsUploading = false;
   fileUrl: string;
@@ -21,6 +23,7 @@ export class ArticleFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private articleService: ArticlesService,
               private userService: UserService,
+              private datePipe: DatePipe,
               private router: Router) {
   }
 

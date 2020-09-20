@@ -17,9 +17,9 @@
       <label for="miseAPrix">Prix initial : </label>
       <input type="number" class="form-control" id="miseAPrix" formControlName="miseAPrix">
       <label for="debutEnchere">Début de l'enchère : </label>
-      <input type="datetime-local" class="form-control" id="debutEnchere" formControlName="debutEnchere">
+      <input type="date" class="form-control" id="debutEnchere" formControlName="debutEnchere">
       <label for="finEnchere">Fin de l'enchère : </label>
-      <input type="datetime-local" class="form-control" id="finEnchere" formControlName="finEnchere">
+      <input type="date" class="form-control" id="finEnchere" formControlName="finEnchere">
       <label for="retrait">Retrait</label>
       <input type="text" class="form-control" id="retrait" formControlName="retrait">
       <button type="submit" class="btn btn-success" [disabled]="articleForm.invalid || fileIsUploading">Enregistrer
