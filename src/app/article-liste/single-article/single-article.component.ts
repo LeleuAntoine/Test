@@ -26,18 +26,19 @@ export class SingleArticleComponent implements OnInit {
     this.articlesService.getSingleArticle(+id).then(
       (article: Article) => {
         this.article = article;
+        if (firebase.auth().currentUser.uid === this.article.userId) {
+          this.isAuth = true;
+        } else {
+          this.isAuth = false;
+        }
       }
     );
-    if (firebase.auth().currentUser.uid === this.article.userId) {
-      this.isAuth = true;
-    } else {
-      this.isAuth = false;
-    }
   }
 
-  onDeleteArticle() {
-    this.articlesService.removeArticle(this.article);
+  onDeleteArticle(article: Article) {
+    this.articlesService.removeArticle(article);
     this.router.navigate(['/articles']);
+    console.log('Article supprimé');
   }
 
   onBack() {

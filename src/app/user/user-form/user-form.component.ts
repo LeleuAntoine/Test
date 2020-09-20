@@ -26,7 +26,7 @@ export class UserFormComponent implements OnInit {
   }
 
   initForm() {
-    this.userUpdate = new UserModel('', '', '', '', '', 0, '', 0, '', '', 0);
+    this.userUpdate = new UserModel('', '', '', '', '', 0, '', 0, '', '', 0, 0);
     this.userUpdate = this.userService.getUser(firebase.auth().currentUser.uid);
     this.updateForm = this.formBuilder.group({
       pseudo: ['', Validators.required],

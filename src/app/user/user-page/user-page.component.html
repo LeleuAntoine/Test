@@ -1,1 +1,16 @@
-<p>user-page works!</p>
+<h2 style="text-align: center">{{userModel.pseudo}}</h2>
+<div style="text-align: center" class="col-xs-12">
+  <p>Pseudo: {{userModel.pseudo}}</p>
+  <p>Nom : {{userModel.nom}}</p>
+  <p>Prénom : {{userModel.prenom}}</p>
+  <p>Email : {{userModel.email}}</p>
+  <p>Téléphone : {{userModel.telephone}}</p>
+  <p>Rue : {{userModel.rue}}</p>
+  <p>Code Postal : {{userModel.codePostal}}</p>
+  <p>Ville : {{userModel.ville}}</p>
+  <p>Crédit disponnible : {{userModel.credit}}</p>
+  <p>Crédit en enchère : {{userModel.creditEnchere}}</p>
+</div>
+<div style="text-align: center" routerLinkActive="active" class="col-xs-12">
+  <button (click)="clickDelete()" class="btn btn-danger">Supprimer mon compte</button><button routerLink="/user/update" class="btn btn-warning">Modifier votre profil</button>
+</div>

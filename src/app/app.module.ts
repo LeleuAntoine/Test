@@ -21,6 +21,7 @@ import {UserService} from './services/user.service';
 const appRoutes: Routes = [
   {path: 'auth/signup', component: SignupComponent},
   {path: 'auth/signin', component: SigninComponent},
+  {path: 'user/view', canActivate: [AuthGuardService], component: UserPageComponent},
   {path: 'user/update', canActivate: [AuthGuardService], component: UserFormComponent},
   {path: 'articles', component: ArticleListeComponent},
   {path: 'articles/new', canActivate: [AuthGuardService], component: ArticleFormComponent},

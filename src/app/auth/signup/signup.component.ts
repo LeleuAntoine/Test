@@ -51,11 +51,13 @@ export class SignupComponent implements OnInit {
     const codePostal = this.signUpForm.get('codePostal').value;
     const ville = this.signUpForm.get('ville').value;
     const credit = 0;
+    const creditEnchere = 0;
     this.authService.createNewUser(email, password).then(
       () => {
         const userId = firebase.auth().currentUser.uid;
-        const newUser = new UserModel(userId, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, credit);
+        const newUser = new UserModel(userId, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, credit, creditEnchere);
         this.userService.createNewUser(newUser);
+        console.log('Connecté');
         this.router.navigate(['/articles']);
       },
       (error) => {

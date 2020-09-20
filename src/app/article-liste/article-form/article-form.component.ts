@@ -5,7 +5,6 @@ import {Router} from '@angular/router';
 import {Article} from '../../model/Article.model';
 import * as firebase from 'firebase';
 import {UserService} from '../../services/user.service';
-import {DatePipe} from '@angular/common';
 import {UserModel} from '../../model/User.model';
 
 @Component({
@@ -29,7 +28,7 @@ export class ArticleFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.userLoad = new UserModel('', '', '', '', '', 0, '', 0, '', '', 0);
+    this.userLoad = new UserModel('', '', '', '', '', 0, '', 0, '', '', 0,0);
   }
 
   initForm() {

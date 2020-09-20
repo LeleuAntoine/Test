@@ -7,9 +7,12 @@ import {Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+
+  //Créer utilisateur
   userModels: UserModel[] = [];
   userSubject = new Subject<UserModel[]>();
 
+  //Recherche utilisateur par uid
   users: UserModel[] = [];
   userUpdate: UserModel;
 
@@ -48,4 +51,21 @@ export class UserService {
       }
     }
   }
+
+  deleteUser(user: UserModel) {
+    console.log(JSON.stringify(user));
+    const userIndexToRemove = this.users.findIndex(
+      (userEL) => {
+        if (userEL === user) {
+          return true;
+        }
+      }
+    );
+    this.users.splice(userIndexToRemove, 1);
+    firebase.auth().currentUser.delete();
+    this.saveUser();
+    this.emitUser();
+    console.log('Compte supprimé');
+  }
+
 }
