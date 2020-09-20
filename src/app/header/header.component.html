@@ -4,6 +4,9 @@
       <li routerLinkActive="active">
         <a routerLink="articles">Articles</a>
       </li>
+      <li routerLinkActive="active" *ngIf="isAuth">
+        <a routerLink="articles/new">Nouvel Article</a>
+      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li routerLinkActive="active" *ngIf="!isAuth">

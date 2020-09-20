@@ -6,6 +6,7 @@ import {Article} from '../../model/Article.model';
 import * as firebase from 'firebase';
 import {UserService} from '../../services/user.service';
 import {DatePipe} from '@angular/common';
+import {UserModel} from '../../model/User.model';
 
 @Component({
   selector: 'app-article-form',
@@ -14,7 +15,7 @@ import {DatePipe} from '@angular/common';
 })
 export class ArticleFormComponent implements OnInit {
 
-  providers: [DatePipe];
+  userLoad: UserModel;
   articleForm: FormGroup;
   fileIsUploading = false;
   fileUrl: string;
@@ -23,12 +24,12 @@ export class ArticleFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private articleService: ArticlesService,
               private userService: UserService,
-              private datePipe: DatePipe,
               private router: Router) {
   }
 
   ngOnInit(): void {
     this.initForm();
+    this.userLoad = new UserModel('', '', '', '', '', 0, '', 0, '', '', 0);
   }
 
   initForm() {

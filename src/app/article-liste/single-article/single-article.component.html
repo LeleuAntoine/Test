@@ -2,16 +2,16 @@
   <div class="col-xs-12">
     <h1>{{article.title}}</h1>
   </div>
-  <div class="col-xs-10 col-xs-offset-2">
+  <div class="col-xs-10 col-xs-offset-1">
     <img style="max-width: 100%" *ngIf="article.photo" [src]="article.photo">
   </div>
-  <div class="col-xs-12">
+  <div class="col-xs-12 col-xs-offset-1">
     <p>Description : {{article.description}}</p>
     <p>Catégorie : {{article.categorie}}</p>
     <p>Mise à Prix : {{article.prixDeDepart}}</p>
     <p>Fin de l'enchère : {{article.finEnchere}}</p>
     <p>Retrait : {{article.retrait}}</p>
-    <p>Utilisateur : {{article.pseudoUser}}</p>
+    <p>Utilisateur : <a>{{article.pseudoUser}}</a></p>
   </div>
   <!--  <form [formGroup]="enchereForm" (ngSubmit)="">-->
   <!--  <div class="col-xs-12">-->
@@ -20,5 +20,8 @@
   <!--    <button type="submit" class="btn btn-success" [disabled]="enchereForm.invalid">Enchérir</button>-->
   <!--  </div>-->
   <!--  </form>-->
-  <button class="btn btn-default" (click)="onBack()">Retour</button>
+  <div class="col-xs-12">
+    <button class="btn btn-default" (click)="onBack()">Retour</button>
+    <button class="btn btn-danger" [disabled]="isAuth" (click)="onDeleteArticle">Supprimer l'article</button>
+  </div>
 </div>

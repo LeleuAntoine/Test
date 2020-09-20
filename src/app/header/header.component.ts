@@ -28,10 +28,6 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  viewProfil() {
-    this.router.navigate(['/user', 'update']);
-  }
-
   onSignOut() {
     this.authService.signOutUser();
   }

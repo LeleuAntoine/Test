@@ -30,7 +30,6 @@ export class ArticlesService {
       this.emitArticle();
     });
     this.article = this.articles[0];
-    console.log(this.article.title);
   }
 
   getSingleArticle(id: number) {
@@ -65,7 +64,6 @@ export class ArticlesService {
           console.log('Fichier non trouvé : ' + error);
         }
       );
-
     }
     const articleIndexToRemove = this.articles.findIndex(
       (articleEL) => {

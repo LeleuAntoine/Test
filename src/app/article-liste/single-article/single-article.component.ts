@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Article} from '../../model/Article.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticlesService} from '../../services/articles.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-single-article',
@@ -10,22 +11,33 @@ import {ArticlesService} from '../../services/articles.service';
 })
 export class SingleArticleComponent implements OnInit {
 
+  isAuth: boolean;
   date: Date;
   article: Article;
 
   constructor(private route: ActivatedRoute,
-              private articleService: ArticlesService,
+              private articlesService: ArticlesService,
               private router: Router) {
   }
 
   ngOnInit(): void {
     this.article = new Article('', '', '', 0, this.date, this.date, '', '', '');
     const id = this.route.snapshot.params['id'];
-    this.articleService.getSingleArticle(+id).then(
+    this.articlesService.getSingleArticle(+id).then(
       (article: Article) => {
         this.article = article;
       }
     );
+    if (firebase.auth().currentUser.uid === this.article.userId) {
+      this.isAuth = true;
+    } else {
+      this.isAuth = false;
+    }
+  }
+
+  onDeleteArticle() {
+    this.articlesService.removeArticle(this.article);
+    this.router.navigate(['/articles']);
   }
 
   onBack() {
