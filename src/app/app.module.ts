@@ -54,7 +54,7 @@ const appRoutes: Routes = [
     AuthService,
     ArticlesService,
     AuthGuardService,
-    UserService
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

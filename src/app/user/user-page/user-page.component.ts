@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 })
 export class UserPageComponent implements OnInit {
 
+  userId: string;
   isAuth: boolean;
   userModel: UserModel;
 

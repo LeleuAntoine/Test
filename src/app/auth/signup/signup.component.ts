@@ -55,7 +55,8 @@ export class SignupComponent implements OnInit {
     this.authService.createNewUser(email, password).then(
       () => {
         const userId = firebase.auth().currentUser.uid;
-        const newUser = new UserModel(userId, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, credit, creditEnchere);
+        const newUser = new UserModel
+        (userId, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, credit, creditEnchere);
         this.userService.createNewUser(newUser);
         console.log('Connecté');
         this.router.navigate(['/articles']);

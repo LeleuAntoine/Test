@@ -2,28 +2,19 @@ import {Injectable} from '@angular/core';
 import * as firebase from 'firebase';
 import {UserModel} from '../model/User.model';
 import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  //Créer utilisateur
   userModels: UserModel[] = [];
   userSubject = new Subject<UserModel[]>();
-
-  //Recherche utilisateur par uid
-  users: UserModel[] = [];
   userUpdate: UserModel;
+  userId: string;
 
-  constructor() {
-  }
-
-  updateUser(pseudo: string, nom: string, prenom: string, telephone: string, rue: string, codePostal: string, ville: string) {
-    return new Promise(
-      (resolve, reject) => {
-      }
-    );
+  constructor(private router: Router) {
   }
 
   createNewUser(newUser: UserModel) {
@@ -33,39 +24,50 @@ export class UserService {
   }
 
   emitUser() {
+    console.log('emit user');
     this.userSubject.next(this.userModels);
   }
 
   saveUser() {
+    console.log('save user');
     firebase.database().ref('/users').set(this.userModels);
   }
 
   getUser(userId: string) {
     firebase.database().ref('/users').on('value', (data) => {
-      this.users = data.val() ? data.val() : [];
+      this.userModels = data.val() ? data.val() : [];
     });
-    for (const index in this.users) {
-      if (this.users[index].userId === userId) {
-        this.userUpdate = this.users[index];
+    for (const index in this.userModels) {
+      if (this.userModels[index].userId === userId) {
+        this.userUpdate = this.userModels[index];
         return this.userUpdate;
       }
     }
   }
 
   deleteUser(user: UserModel) {
-    console.log(JSON.stringify(user));
-    const userIndexToRemove = this.users.findIndex(
+    const userIndexToRemove = this.userModels.findIndex(
       (userEL) => {
         if (userEL === user) {
           return true;
         }
       }
     );
-    this.users.splice(userIndexToRemove, 1);
+    this.userModels.splice(userIndexToRemove, 1);
     firebase.auth().currentUser.delete();
     this.saveUser();
     this.emitUser();
+    this.router.navigate(['/articles']);
     console.log('Compte supprimé');
   }
 
+  updateUser(userModel: UserModel) {
+    for (const index in this.userModels) {
+      if (this.userModels[index].userId === firebase.auth().currentUser.uid) {
+        console.log('user index ' + index);
+        return firebase.database().ref('/users/' + index).update(userModel);
+      }
+    }
+  }
 }
+

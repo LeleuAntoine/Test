@@ -3,6 +3,8 @@ import {Article} from '../../model/Article.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticlesService} from '../../services/articles.service';
 import * as firebase from 'firebase';
+import {UserPageComponent} from '../../user/user-page/user-page.component';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-single-article',

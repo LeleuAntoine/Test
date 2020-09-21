@@ -11,7 +11,7 @@
         </h3>
         <img src="{{article.photo}}" style="max-width: 30%">
         <p>Prix : {{article.prixDeDepart}}</p>
-        <p>Fin de l'enchère : {{article.finEnchere}}</p>
+        <p>Fin de l'enchère : {{article.finEnchere | date:'dd/MM/yyyy'}}</p>
         <p>Retrait : {{article.retrait}}</p>
         <p>Vendeur : {{article.pseudoUser}}</p>
       </button>
