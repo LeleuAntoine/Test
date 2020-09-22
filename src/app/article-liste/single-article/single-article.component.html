@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-xs-12" style="text-align: center">
-    <h1>{{article.title}}</h1>
+    <h3>Détail de la vente</h3>
+    <h2>{{article.title}}</h2>
   </div>
   <div class="col-xs-10 col-xs-offset-1">
     <img style="max-width: 100%" *ngIf="article.photo" [src]="article.photo">
@@ -12,14 +13,18 @@
     <p>Fin de l'enchère : {{article.finEnchere | date:'dd/MM/yyyy'}}</p>
     <p>Retrait : {{article.retrait}}</p>
     <p>Utilisateur : <a routerLink="/user/view" style="cursor: pointer">{{article.pseudoUser}}</a></p>
+    <p>Meilleur Offre : {{article.meilleurOffre}}</p>
+    <p *ngIf="article.acheteur">Enchérisseur actuel : {{userService.getUser(article.acheteur).pseudo}}</p>
   </div>
-  <!--  <form [formGroup]="enchereForm" (ngSubmit)="">-->
-  <!--  <div class="col-xs-12">-->
-  <!--    <label for="maProposition">Ma Proposition :</label>-->
-  <!--    <input type="number" class="form-control" id="maProposition" formControlName="maProposition">-->
-  <!--    <button type="submit" class="btn btn-success" [disabled]="enchereForm.invalid">Enchérir</button>-->
-  <!--  </div>-->
-  <!--  </form>-->
+    <form [formGroup]="enchereForm" (ngSubmit)="encherir()" *ngIf="!isAuth">
+    <div class="col-xs-12">
+      <label for="maProposition">Ma Proposition :</label>
+      <input type="number" class="form-control" id="maProposition" formControlName="maProposition">
+      <button type="submit" class="btn btn-success" >Enchérir</button>
+      <p *ngIf="enchereReussi" class="text-success">Enchère réussi</p>
+      <p *ngIf="enchereEchec" class="text-danger">Crédit insufisant</p>
+    </div>
+    </form>
   <div class="col-xs-12 col-xs-offset-4">
     <button class="btn btn-default" (click)="onBack()">Retour</button>
     <button class="btn btn-danger" *ngIf="isAuth" (click)="onDeleteArticle(article)">Supprimer l'article</button>

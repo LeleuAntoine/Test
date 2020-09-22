@@ -27,6 +27,5 @@ export class UserPageComponent implements OnInit {
 
   clickDelete() {
     this.userService.deleteUser(this.userService.getUser(firebase.auth().currentUser.uid));
-    this.router.navigate(['/articles']);
   }
 }

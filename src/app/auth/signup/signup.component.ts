@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
     const rue = this.signUpForm.get('rue').value;
     const codePostal = this.signUpForm.get('codePostal').value;
     const ville = this.signUpForm.get('ville').value;
-    const credit = 0;
+    const credit = 100;
     const creditEnchere = 0;
     this.authService.createNewUser(email, password).then(
       () => {

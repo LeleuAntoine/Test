@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Article} from '../model/Article.model';
 import {Subject} from 'rxjs';
 import * as firebase from 'firebase';
+import {UserModel} from '../model/User.model';
 
 
 @Injectable({
@@ -100,4 +101,10 @@ export class ArticlesService {
       }
     );
   }
+
+  updateArticle(article: Article, index: number) {
+    console.log('articles ' + index);
+    return firebase.database().ref('/articles/' + index).update(article);
+  }
+
 }

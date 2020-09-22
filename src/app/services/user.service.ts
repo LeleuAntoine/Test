@@ -54,10 +54,10 @@ export class UserService {
       }
     );
     this.userModels.splice(userIndexToRemove, 1);
+    this.router.navigate(['/articles']);
     firebase.auth().currentUser.delete();
     this.saveUser();
     this.emitUser();
-    this.router.navigate(['/articles']);
     console.log('Compte supprimé');
   }
 
