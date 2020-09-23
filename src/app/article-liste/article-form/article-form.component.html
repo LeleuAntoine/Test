@@ -1,30 +1,54 @@
 <div class="row">
   <div class="col-xs-12">
-    <h2>Enregistrer un nouvel article</h2>
+    <h2 style="text-align: center">Enregistrer un nouvel article</h2>
     <form [formGroup]="articleForm" (ngSubmit)="onSaveArticle()">
-      <label for="title">Article : </label>
-      <input type="text" class="form-control" id="title" formControlName="title">
-      <label for="categorie">Categorie : </label>
-      <input type="text" class="form-control" id="categorie" formControlName="categorie">
-      <label for="description">Descritpion : </label>
-      <input type="text" class="form-control" id="description" formControlName="description">
-      <div class="form-group">
-        <h4>Ajouter une photo</h4>
-        <input type="file" (change)="detectFiles($event)" class="form-control" accept="image/*">
-        <p class="text-success" *ngIf="fileUploaded">Fichier Chargé</p>
+      <div class="col-xs-12">
+        <div class="col-sm-6">
+          <label for="title">Article : </label>
+          <input type="text" class="form-control" id="title" formControlName="title">
+        </div>
+        <div class="col-sm-6">
+          <label for="categorie">Categorie : </label>
+          <input type="text" class="form-control" id="categorie" formControlName="categorie">
+        </div>
       </div>
-      <label for="miseAPrix">Prix initial : </label>
-      <input type="number" class="form-control" id="miseAPrix" formControlName="miseAPrix">
-      <label for="debutEnchere">Début de l'enchère : </label>
-      <input type="date" class="form-control" id="debutEnchere" formControlName="debutEnchere" min="{{date | date:'yyyy-MM-dd'}}">
-      <label for="finEnchere">Fin de l'enchère : </label>
-      <input type="date" class="form-control" id="finEnchere" formControlName="finEnchere"
-             min="{{date | date:'yyyy-MM-dd'}}">
-      <label for="retrait">Retrait</label>
-      <input type="text" class="form-control" id="retrait" formControlName="retrait">
-      <button type="submit" class="btn btn-success" [disabled]="articleForm.invalid || fileIsUploading">Enregistrer
-      </button>
-      <button class="btn btn-primary" type="reset" routerLink="/articles">Annuler</button>
+      <div class="col-xs-12">
+        <label for="description">Descritpion : </label>
+        <textarea type="text" class="form-control" id="description" formControlName="description"></textarea>
+      </div>
+      <div class="col-xs-12">
+        <div class="col-sm-6 form-group">
+          <label>Ajouter une photo</label>
+          <input type="file" (change)="detectFiles($event)" class="form-control" accept="image/*">
+          <p class="text-success" *ngIf="fileUploaded">Fichier Chargé</p>
+        </div>
+        <div class="col-sm-6">
+          <label for="miseAPrix">Prix initial : </label>
+          <input type="number" class="form-control" id="miseAPrix" formControlName="miseAPrix">
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="col-sm-6">
+          <label for="debutEnchere">Début de l'enchère : </label>
+          <input type="date" class="form-control" id="debutEnchere" formControlName="debutEnchere"
+                 min="{{date | date:'yyyy-MM-dd'}}">
+        </div>
+        <div class="col-sm-6">
+          <label for="finEnchere">Fin de l'enchère : </label>
+          <input type="date" class="form-control" id="finEnchere" formControlName="finEnchere"
+                 min="{{date | date:'yyyy-MM-dd'}}">
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <label for="retrait">Retrait</label>
+        <textarea type="text" class="form-control" id="retrait" formControlName="retrait"></textarea>
+      </div>
+      <div style="text-align: center" class="col-xs-12">
+        <button type="submit" class="btn btn-success"
+                [disabled]="articleForm.invalid || fileIsUploading">Enregistrer
+        </button>
+        <button class="btn btn-primary" type="reset" routerLink="/articles">Annuler</button>
+      </div>
     </form>
   </div>
 </div>

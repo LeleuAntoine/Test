@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import * as firebase from 'firebase';
 import {Router} from '@angular/router';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent implements OnInit {
   isAuth: boolean;
 
   constructor(private authService: AuthService,
+              private userService: UserService,
               private router: Router) {
   }
 
