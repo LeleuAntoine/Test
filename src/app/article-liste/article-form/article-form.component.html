@@ -9,7 +9,10 @@
         </div>
         <div class="col-sm-6">
           <label for="categorie">Categorie : </label>
-          <input type="text" class="form-control" id="categorie" formControlName="categorie">
+          <select class="form-control" id="categorie" formControlName="categorie">
+            <option value="" disabled selected>Choisisez votre categorie</option>
+            <option *ngFor="let categorie of categories; let i = index">{{categorie.libele}}</option>
+          </select>
         </div>
       </div>
       <div class="col-xs-12">

@@ -17,6 +17,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { UserFormComponent } from './user/user-form/user-form.component';
 import { UserPageComponent } from './user/user-page/user-page.component';
 import {UserService} from './services/user.service';
+import { CategorieComponent } from './categorie/categorie.component';
 
 const appRoutes: Routes = [
   {path: 'auth/signup', component: SignupComponent},
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   {path: 'articles', component: ArticleListeComponent},
   {path: 'articles/new', canActivate: [AuthGuardService], component: ArticleFormComponent},
   {path: 'articles/view/:id', canActivate: [AuthGuardService], component: SingleArticleComponent},
+  {path: 'categories', canActivate: [AuthGuardService], component: CategorieComponent},
   {path: '', redirectTo: 'articles', pathMatch: 'full'},
   {path: '**', redirectTo: 'articles'}
 
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     SingleArticleComponent,
     ArticleFormComponent,
     UserFormComponent,
-    UserPageComponent
+    UserPageComponent,
+    CategorieComponent
   ],
   imports: [
     BrowserModule,

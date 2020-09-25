@@ -1,0 +1,17 @@
+<div class="row col-xs-12">
+  <ul class="list-group col-xs-12">
+    <li class="list-group-item"
+        *ngFor="let categorie of categories; let i =index">
+      <p>{{i + 1}} : {{categorie.libele}}
+        <button class="btn btn-danger pull-right" (click)="deleteCategorie(i)">Supprimer</button>
+      </p>
+    </li>
+  </ul>
+</div>
+<div class="col-xs-12">
+  <form [formGroup]="categorieForm" class="form-inline" (ngSubmit)="saveCategorie()">
+    <label for="libele">Ajouter une nouvelle catégorie : </label>
+    <input type="text" class="form-control" formControlName="libele" id="libele">
+    <button class="btn btn-success" type="submit">Ajout</button>
+  </form>
+</div>

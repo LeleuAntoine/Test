@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Article} from '../model/Article.model';
 import {Subscription} from 'rxjs';
 import {ArticlesService} from '../services/articles.service';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
+import {Article} from '../model/Article.model';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-article-liste',
@@ -12,11 +13,14 @@ import * as firebase from 'firebase';
 })
 export class ArticleListeComponent implements OnInit, OnDestroy {
 
+  isAdmin = false;
   isAuth: boolean;
   articles: Article[];
   articleSubscription: Subscription;
 
-  constructor(private articlesService: ArticlesService, private router: Router) {
+  constructor(private articlesService: ArticlesService,
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -31,6 +35,9 @@ export class ArticleListeComponent implements OnInit, OnDestroy {
       (user) => {
         if (user) {
           this.isAuth = true;
+          if (this.userService.getUser(firebase.auth().currentUser.uid).role === 1) {
+            this.isAdmin = true;
+          }
         } else {
           this.isAuth = false;
         }
@@ -40,6 +47,10 @@ export class ArticleListeComponent implements OnInit, OnDestroy {
 
   onNewArticle() {
     this.router.navigate(['/articles', 'new']);
+  }
+
+  onCategorie() {
+    this.router.navigate(['categories']);
   }
 
   onViewArticle(id: number) {

@@ -21,7 +21,7 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userModel = new UserModel('', '', '', '', '', 0, '', 0, '', '', 0, 0);
+    this.userModel = new UserModel('', '', '', '', '', 0, '', 0, '', '', 0, 0, 0);
     this.userModel = this.userService.getUser(firebase.auth().currentUser.uid);
   }
 

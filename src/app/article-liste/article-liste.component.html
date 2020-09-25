@@ -16,8 +16,15 @@
         <p>Vendeur : {{article.pseudoUser}}</p>
       </button>
     </div>
-    <button style="align-self: center" class="col-xs-offset-5 btn btn-primary"
-            (click)="onNewArticle()" *ngIf="isAuth">Nouvel Article
-    </button>
+    <div routerLinkActive="active" class="col-xs-12">
+      <button class="btn btn-primary center-block"
+              (click)="onNewArticle()" *ngIf="isAuth">Nouvel Article
+      </button>
+      <div routerLinkActive="active">
+        <button (click)="onCategorie()" class="btn btn-warning pull-right" *ngIf="!isAdmin">
+          Catégories
+        </button>
+      </div>
+    </div>
   </div>
 </div>

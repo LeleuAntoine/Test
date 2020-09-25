@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Article} from '../../model/Article.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticlesService} from '../../services/articles.service';
 import * as firebase from 'firebase';
-import {UserPageComponent} from '../../user/user-page/user-page.component';
 import {UserService} from '../../services/user.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserModel} from '../../model/User.model';
+import {Article} from '../../model/Article.model';
 
 @Component({
   selector: 'app-single-article',
@@ -37,7 +36,8 @@ export class SingleArticleComponent implements OnInit {
     this.articlesService.getSingleArticle(+id).then(
       (article: Article) => {
         this.article = article;
-        if (firebase.auth().currentUser.uid === this.article.userId) {
+        if (firebase.auth().currentUser.uid === this.article.userId ||
+          this.userService.getUser(firebase.auth().currentUser.uid).role === 1) {
           this.isAuth = true;
         } else {
           this.isAuth = false;

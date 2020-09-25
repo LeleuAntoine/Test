@@ -27,7 +27,7 @@ export class UserFormComponent implements OnInit {
   }
 
   initForm() {
-    this.userUpdate = new UserModel('', '', '', '', '', 0, '', 0, '', '', 0, 0);
+    this.userUpdate = new UserModel('', '', '', '', '', 0, '', 0, '', '', 0, 0, 0);
     this.userUpdate = this.userService.getUser(firebase.auth().currentUser.uid);
     this.updateForm = this.formBuilder.group({
       pseudo: ['', Validators.required],
@@ -53,8 +53,9 @@ export class UserFormComponent implements OnInit {
     const userId = this.userUpdate.userId;
     const credit = this.userUpdate.credit;
     const creditEnchere = this.userUpdate.creditEnchere;
+    const role = this.userUpdate.role;
     this.userUpdate = new UserModel
-    (userId, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, credit, creditEnchere);
+    (userId, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, credit, creditEnchere, role);
     this.userService.updateUser(this.userUpdate);
     this.router.navigate(['/user/view']);
   }
