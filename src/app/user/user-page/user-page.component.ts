@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {UserModel} from '../../model/User.model';
 import * as firebase from 'firebase';
+import {ArticlesService} from '../../services/articles.service';
 
 @Component({
   selector: 'app-user-page',
@@ -11,12 +12,12 @@ import * as firebase from 'firebase';
 })
 export class UserPageComponent implements OnInit {
 
-  userId: string;
   isAuth: boolean;
   userModel: UserModel;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
+              private articlesService: ArticlesService,
               private router: Router) {
   }
 
@@ -26,6 +27,7 @@ export class UserPageComponent implements OnInit {
   }
 
   clickDelete() {
+    this.articlesService.getArticleById(firebase.auth().currentUser.uid);
     this.userService.deleteUser(this.userService.getUser(firebase.auth().currentUser.uid));
   }
 }

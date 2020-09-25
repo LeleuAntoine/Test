@@ -31,6 +31,17 @@ export class ArticlesService {
     this.article = this.articles[0];
   }
 
+  getArticleById(id: string){
+    firebase.database().ref('/articles').on('value', (data) =>{
+      this.articles = data.val() ? data.val() : [];
+    });
+    for (const index in this.articles){
+      if (this.articles[index].userId === firebase.auth().currentUser.uid){
+        this.removeArticle(this.articles[index]);
+      }
+    }
+  }
+
   getSingleArticle(id: number) {
     return new Promise(
       (resolve, reject) => {
